@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analizador de Datos Cualitativos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "papaparse": "https://esm.sh/papaparse@5.4.1",
+      "d3": "https://esm.sh/d3@7.9.0",
+      "jspdf": "https://esm.sh/jspdf@2.5.2",
+      "html2canvas": "https://esm.sh/html2canvas@1.4.1",
+      "mammoth": "https://esm.sh/mammoth@1.6.0",
+      "xlsx": "https://esm.sh/xlsx@0.18.5",
+      "pdfjs-dist": "https://esm.sh/pdfjs-dist@4.7.76",
+      "docx": "https://esm.sh/docx@8.6.0"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-title">Analizador de Datos Cualitativos</div>
+    <div class="powered">Powered by ITCPO</div>
+  </header>
+
+  <nav class="top-menu">
+    <button class="menu-btn active" data-view="carga">Cargar Archivos</button>
+    <button class="menu-btn" data-view="categorias">Categorías Base</button>
+    <button class="menu-btn" data-view="analisis">Ejecutar Análisis</button>
+    <button class="menu-btn" data-view="red">Red Temática</button>
+    <button class="menu-btn" data-view="reportes">Reportes</button>
+    <button class="menu-btn" id="btn-reset">Reiniciar</button>
+  </nav>
+
+  <main class="container">
+    <section id="view-carga" class="view visible">
+      <div class="panel">
+        <h2>1. Carga y preparación</h2>
+        <p class="muted">Formatos: docx, pdf, xls, xlsx, csv, txt. (Los archivos .doc antiguos pueden no procesarse correctamente en el navegador.)</p>
+        <label class="upload-area">
+          <input id="file-input" type="file" multiple accept=".txt,.csv,.docx,.pdf,.xls,.xlsx" />
+          <span class="upload-instructions">Arrastra y suelta o haz clic para seleccionar archivos</span>
+        </label>
+        <div id="files-list" class="list"></div>
+        <div class="actions">
+          <button id="btn-clear" class="btn secondary">Limpiar</button>
+          <button id="btn-parse" class="btn primary">Procesar Archivos</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Previsualización y metadatos detectados</h3>
+        <div id="preview" class="preview"></div>
+      </div>
+    </section>
+
+    <section id="view-categorias" class="view">
+      <div class="panel">
+        <h2>2. Categorías base del plan de análisis</h2>
+        <p class="muted">Edita o ingresa tus categorías base (una por línea). Puedes incluir sinónimos separados por " | ".</p>
+        <textarea id="base-categories" rows="10" placeholder="Ejemplo:
+Acceso a servicios|disponibilidad|cobertura
+Participación comunitaria|liderazgo|organización
+Percepción de riesgos|miedo|incertidumbre
+Políticas públicas|programas|instituciones
+Recursos y capacidades|financiamiento|infraestructura"></textarea>
+        <div class="actions">
+          <button id="btn-save-categories" class="btn primary">Guardar categorías</button>
+        </div>
+      </div>
+
+      <!-- Sentiment chart panel -->
+      <div class="panel">
+        <h3>Análisis de sentimiento (global)</h3>
+        <p class="muted">Distribución simple de sentimiento en los textos cargados: positivo, neutral y negativo.</p>
+        <div id="sentiment-chart" style="height:220px;"></div>
+      </div>
+    </section>
+
+    <section id="view-analisis" class="view">
+      <div class="panel">
+        <h2>3. Análisis</h2>
+        <ol class="steps">
+          <li>Lectura inicial y familiarización</li>
+          <li>Codificación abierta</li>
+          <li>Agrupación en categorías (incluye categorías emergentes)</li>
+          <li>Análisis temático reflexivo (con citas)</li>
+        </ol>
+        <div class="actions">
+          <button id="btn-run-analysis" class="btn success">Ejecutar análisis</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Resultados</h3>
+        <div id="results" class="results">
+          <div class="grid">
+            <div>
+              <h4>Lectura inicial</h4>
+              <div id="familiarization"></div>
+            </div>
+            <div>
+              <h4>Códigos iniciales</h4>
+              <div id="open-codes"></div>
+            </div>
+            <div>
+              <h4>Categorías</h4>
+              <div id="categories"></div>
+            </div>
+            <div>
+              <h4>Temas y subtemas</h4>
+              <div id="themes"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-red" class="view">
+      <div class="panel">
+        <h2>4. Red temática</h2>
+        <p class="muted">Ejes → Categorías → Subtemas → Códigos → Citas</p>
+        <div class="actions">
+          <button id="btn-refresh-network" class="btn primary">Actualizar Red</button>
+          <button id="btn-nodes-main" class="btn">Principales</button>
+          <button id="btn-nodes-cats" class="btn">Categorías</button>
+          <button id="btn-nodes-all" class="btn">Todos</button>
+          <button id="btn-zoom-in" class="btn">Zoom +</button>
+          <button id="btn-zoom-out" class="btn">Zoom −</button>
+          <button id="btn-reset-zoom" class="btn">Reset Zoom</button>
+          <button id="btn-export-pdf" class="btn">Exportar PDF de red</button>
+        </div>
+        <div id="network" class="network"></div>
+      </div>
+    </section>
+
+    <section id="view-reportes" class="view">
+      <div class="panel">
+        <h2>5. Reportes</h2>
+        <div class="actions">
+          <button id="btn-generate-docx" class="btn success">Generar Word</button>
+        </div>
+        <div id="report-preview" class="report"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Listo</span>
+  </footer>
+
+  <!-- Notification container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Floating help button -->
+  <button id="help-btn" class="help-btn" title="Ayuda">?</button>
+  <!-- Help modal -->
+  <div id="help-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button id="help-close" class="modal-close" aria-label="Cerrar">×</button>
+      <h2>Análisis cualitativos</h2>
+      <p>Los análisis cualitativos exploran significados, experiencias y patrones discursivos presentes en datos textuales (entrevistas, grupos focales, narrativas y notas de campo), utilizando enfoques interpretativo-constructivistas.</p>
+      <h3>Objetivo de la herramienta</h3>
+      <p>Identificar significados, patrones y temas centrales que emergen de los datos mediante codificación abierta, agrupación en categorías (incluyendo emergentes) y síntesis temática reflexiva con citas representativas.</p>
+      <h3>Cómo se usa</h3>
+      <ol>
+        <li>Cargar archivos en "Carga y preparación" y procesarlos.</li>
+        <li>Definir "Categorías base" y guardar.</li>
+        <li>Ir a "Ejecutar Análisis" y presionar el botón.</li>
+        <li>Visualizar la "Red temática" y actualizar si es necesario.</li>
+        <li>Revisar "Reportes" y generar el reporte en Word.</li>
+      </ol>
+      <h3>Ejemplo completo</h3>
+      <ol>
+        <li>Sube dos entrevistas (PDF/DOCX).</li>
+        <li>Define categorías base, por ejemplo: Acceso a servicios | disponibilidad | cobertura.</li>
+        <li>Ejecuta el análisis para ver:
+          <ul>
+            <li>Códigos iniciales</li>
+            <li>Agrupación por categorías (incluye emergentes)</li>
+            <li>Temas con citas representativas</li>
+          </ul>
+        </li>
+        <li>Actualiza la red temática para visualizar relaciones entre categorías, subtemas y citas.</li>
+        <li>En "Reportes", genera el documento Word con:
+          <ul>
+            <li>Temas y subtemas</li>
+            <li>Tabla categorías–códigos–citas</li>
+            <li>Síntesis comparativa (si hay metadatos)</li>
+            <li>Matriz de categorías emergentes</li>
+          </ul>
+        </li>
+      </ol>
+      <p class="small">© 2025 Carlos Alfredo Castillo Flores, CEO de ITCPO. Todos los derechos reservados.</p>
+    </div>
+  </div>
+  <!-- Confirm reset modal -->
+  <div id="confirm-reset-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <h3>Confirmar reinicio</h3>
+      <p>Esta acción eliminará todos los archivos cargados y resultados del análisis. ¿Desea continuar?</p>
+      <div class="actions">
+        <button id="confirm-reset-no" class="btn">No, cancelar</button>
+        <button id="confirm-reset-yes" class="btn primary">Sí, reiniciar</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
