@@ -175,27 +175,44 @@ Recursos y capacidades|financiamiento|infraestructura"></textarea>
         <li>Visualizar la "Red temática" y actualizar si es necesario.</li>
         <li>Revisar "Reportes" y generar el reporte en Word.</li>
       </ol>
-      <h3>Ejemplo completo</h3>
+
+      <h3>Novedades y funciones adicionales</h3>
+      <ul>
+        <li><strong>Análisis de sentimiento (panel de Categorías base)</strong>: se muestra una gráfica de columnas que resume la distribución de oraciones positivas, neutras y negativas detectadas en los textos procesados.</li>
+        <li><strong>Categorías emergentes</strong>: las categorías generadas automáticamente aparecen separadas de las categorías base. Cada categoría emergente tiene un botón "×" para eliminarla del análisis si no es relevante.</li>
+        <li><strong>Renombrar emergentes</strong>: puede hacer clic sobre el nombre de una categoría emergente para editarlo en línea; la herramienta actualizará temas, red y reporte de forma automática.</li>
+        <li><strong>Red temática (interacción mejorada)</strong>:
+          <ul>
+            <li>Botones para filtrar nodos: "Principales", "Categorías" y "Todos".</li>
+            <li>Controles de zoom: Zoom + / Zoom − / Reset para aumentar o disminuir la escala de la visualización y centrarla.</li>
+            <li>La red se renderiza con dimensiones ampliadas internamente para facilitar la exportación y la visualización completa.</li>
+            <li>Puede arrastrar nodos para ajustar la disposición antes de exportar.</li>
+          </ul>
+        </li>
+        <li><strong>Exportar PDF de la red</strong>: use "Exportar PDF de red" para crear un PDF optimizado que intenta ajustar la imagen al tamaño de página (se limitan las dimensiones para evitar archivos excesivamente grandes y mantener legible la red).</li>
+        <li><strong>Reporte Word (mejorado)</strong>: el documento incluye lectura inicial, códigos iniciales, categorías (base y emergentes), temas y subtemas, citas representativas, una tabla de categorías–códigos–citas y una sección ampliada de la matriz de ejes emergentes con conteos, términos frecuentes y ejemplos.</li>
+        <li><strong>Matriz de valores / ejes emergentes</strong>: en la vista de Reportes se entrega una síntesis ampliada para cada emergente con indicadores útiles para priorización (número de citas, términos frecuentes y ejemplos).</li>
+        <li><strong>Control de calidad de la red exportada</strong>: antes de exportar la red a PDF la aplicación aplica una escala y recorta dimensiones para conservar la legibilidad; si necesita más detalle, ajuste el Zoom en la vista y vuelva a exportar.</li>
+      </ul>
+
+      <h3>Consejos prácticos</h3>
+      <ul>
+        <li>Si una categoría emergente no aporta al análisis, elimínela (botón "×") para limpiar resultados y reportes.</li>
+        <li>Renombre emergentes para consolidarlas bajo etiquetas analíticas más precisas antes de generar el documento final.</li>
+        <li>Use el zoom y mueva nodos en la red antes de exportar para obtener un PDF con la mejor disposición de nodos posible.</li>
+        <li>Revise la gráfica de sentimiento para verificar que el balance positivo/neutral/negativo coincide con su lectura de las citas; la heurística es simple y puede requerir ajuste manual en casos complejos.</li>
+      </ul>
+
+      <h3>Ejemplo rápido</h3>
       <ol>
-        <li>Sube dos entrevistas (PDF/DOCX).</li>
-        <li>Define categorías base, por ejemplo: Acceso a servicios | disponibilidad | cobertura.</li>
-        <li>Ejecuta el análisis para ver:
-          <ul>
-            <li>Códigos iniciales</li>
-            <li>Agrupación por categorías (incluye emergentes)</li>
-            <li>Temas con citas representativas</li>
-          </ul>
-        </li>
-        <li>Actualiza la red temática para visualizar relaciones entre categorías, subtemas y citas.</li>
-        <li>En "Reportes", genera el documento Word con:
-          <ul>
-            <li>Temas y subtemas</li>
-            <li>Tabla categorías–códigos–citas</li>
-            <li>Síntesis comparativa (si hay metadatos)</li>
-            <li>Matriz de categorías emergentes</li>
-          </ul>
-        </li>
+        <li>Sube entrevistas (PDF/DOCX) y procésalas.</li>
+        <li>Define categorías base (por ejemplo: Acceso a servicios | disponibilidad | cobertura) y guárdelas.</li>
+        <li>Ejecuta el análisis para extraer códigos, agrupar en categorías base y emergentes, y sintetizar temas con citas.</li>
+        <li>En "Ejecutar Análisis" revise las emergentes: elimine o renombre según corresponda.</li>
+        <li>Vaya a "Red Temática", ajuste filtro y zoom, mueva nodos para claridad y exporte la red en PDF si lo requiere.</li>
+        <li>En "Reportes" genere el Word final; la sección de matriz emergente incluye conteos y términos frecuentes para priorización.</li>
       </ol>
+
       <p class="small">© 2025 Carlos Alfredo Castillo Flores, CEO de ITCPO. Todos los derechos reservados.</p>
     </div>
   </div>
