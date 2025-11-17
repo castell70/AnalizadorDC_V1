@@ -163,55 +163,87 @@ Recursos y capacidades|financiamiento|infraestructura"></textarea>
   <div id="help-modal" class="modal" aria-hidden="true">
     <div class="modal-content">
       <button id="help-close" class="modal-close" aria-label="Cerrar">×</button>
-      <h2>Análisis cualitativos</h2>
-      <p>Los análisis cualitativos exploran significados, experiencias y patrones discursivos presentes en datos textuales (entrevistas, grupos focales, narrativas y notas de campo), utilizando enfoques interpretativo-constructivistas.</p>
-      <h3>Objetivo de la herramienta</h3>
-      <p>Identificar significados, patrones y temas centrales que emergen de los datos mediante codificación abierta, agrupación en categorías (incluyendo emergentes) y síntesis temática reflexiva con citas representativas.</p>
-      <h3>Cómo se usa</h3>
+      <h2>Análisis cualitativos — Guía completa</h2>
+
+      <p>Esta aplicación apoya el análisis cualitativo de materiales textuales (entrevistas, grupos focales, notas de campo, encuestas abiertas) mediante un flujo guiado que incluye carga y limpieza de archivos, definición de categorías base, extracción de códigos, identificación de categorías emergentes, síntesis temática, visualización en red y generación de reportes.</p>
+
+      <h3>Resumen del flujo</h3>
       <ol>
-        <li>Cargar archivos en "Carga y preparación" y procesarlos.</li>
-        <li>Definir "Categorías base" y guardar.</li>
-        <li>Ir a "Ejecutar Análisis" y presionar el botón.</li>
-        <li>Visualizar la "Red temática" y actualizar si es necesario.</li>
-        <li>Revisar "Reportes" y generar el reporte en Word.</li>
+        <li><strong>Cargar archivos:</strong> Suba documentos en formatos compatibles (.txt, .csv, .docx, .pdf, .xls, .xlsx). Tras procesarlos la herramienta extrae texto y metadatos heurísticos (país, edad, género, localidad).</li>
+        <li><strong>Definir categorías base:</strong> En "Categorías base" ingrese sus categorías analíticas (una por línea). Puede añadir sinónimos usando " | " para mejorar la asignación automática de códigos.</li>
+        <li><strong>Ejecutar análisis:</strong> Presione "Ejecutar análisis" para generar lectura inicial, códigos abiertos, agrupación en categorías (base + emergentes) y síntesis temática con citas representativas.</li>
+        <li><strong>Refinar emergentes:</strong> Revise, elimine (×) o renombre emergentes directamente en el panel de Categorías; las vistas y el reporte se actualizan automáticamente.</li>
+        <li><strong>Explorar la red temática:</strong> Use los filtros (Principales / Categorías / Todos), controles de zoom y arrastre de nodos para optimizar la disposición antes de exportar a PDF.</li>
+        <li><strong>Generar reporte:</strong> En "Reportes" puede previsualizar y exportar un documento Word con lectura inicial, códigos, categorías, tablas de citas y una matriz ampliada de ejes emergentes.</li>
       </ol>
 
-      <h3>Novedades y funciones adicionales</h3>
+      <h3>Detalles y consejos por sección</h3>
+      <h4>1. Carga y preparación</h4>
       <ul>
-        <li><strong>Análisis de sentimiento (panel de Categorías base)</strong>: se muestra una gráfica de columnas que resume la distribución de oraciones positivas, neutras y negativas detectadas en los textos procesados.</li>
-        <li><strong>Categorías emergentes</strong>: las categorías generadas automáticamente aparecen separadas de las categorías base. Cada categoría emergente tiene un botón "×" para eliminarla del análisis si no es relevante.</li>
-        <li><strong>Renombrar emergentes</strong>: puede hacer clic sobre el nombre de una categoría emergente para editarlo en línea; la herramienta actualizará temas, red y reporte de forma automática.</li>
-        <li><strong>Red temática (interacción mejorada)</strong>:
-          <ul>
-            <li>Botones para filtrar nodos: "Principales", "Categorías" y "Todos".</li>
-            <li>Controles de zoom: Zoom + / Zoom − / Reset para aumentar o disminuir la escala de la visualización y centrarla.</li>
-            <li>La red se renderiza con dimensiones ampliadas internamente para facilitar la exportación y la visualización completa.</li>
-            <li>Puede arrastrar nodos para ajustar la disposición antes de exportar.</li>
-          </ul>
-        </li>
-        <li><strong>Exportar PDF de la red</strong>: use "Exportar PDF de red" para crear un PDF optimizado que intenta ajustar la imagen al tamaño de página (se limitan las dimensiones para evitar archivos excesivamente grandes y mantener legible la red).</li>
-        <li><strong>Reporte Word (mejorado)</strong>: el documento incluye lectura inicial, códigos iniciales, categorías (base y emergentes), temas y subtemas, citas representativas, una tabla de categorías–códigos–citas y una sección ampliada de la matriz de ejes emergentes con conteos, términos frecuentes y ejemplos.</li>
-        <li><strong>Matriz de valores / ejes emergentes</strong>: en la vista de Reportes se entrega una síntesis ampliada para cada emergente con indicadores útiles para priorización (número de citas, términos frecuentes y ejemplos).</li>
-        <li><strong>Control de calidad de la red exportada</strong>: antes de exportar la red a PDF la aplicación aplica una escala y recorta dimensiones para conservar la legibilidad; si necesita más detalle, ajuste el Zoom en la vista y vuelva a exportar.</li>
+        <li>Preferible: convertir archivos .doc antiguos a .docx para mejor compatibilidad.</li>
+        <li>Al procesar, la aplicación extrae texto y crea una previsualización; revise el snippet para verificar la calidad del OCR/extraído.</li>
+        <li>Si algún archivo falla, el previsualizador mostrará un mensaje de error por archivo para actuar sobre él.</li>
       </ul>
 
-      <h3>Consejos prácticos</h3>
+      <h4>2. Categorías base</h4>
       <ul>
-        <li>Si una categoría emergente no aporta al análisis, elimínela (botón "×") para limpiar resultados y reportes.</li>
-        <li>Renombre emergentes para consolidarlas bajo etiquetas analíticas más precisas antes de generar el documento final.</li>
-        <li>Use el zoom y mueva nodos en la red antes de exportar para obtener un PDF con la mejor disposición de nodos posible.</li>
-        <li>Revise la gráfica de sentimiento para verificar que el balance positivo/neutral/negativo coincide con su lectura de las citas; la heurística es simple y puede requerir ajuste manual en casos complejos.</li>
+        <li>Escriba cada categoría en una línea; incluya sinónimos separados por " | " (ej. Acceso a servicios | disponibilidad | cobertura).</li>
+        <li>Las categorías base sirven como punto de partida para agrupar códigos; las emergentes complementan el plan analítico si aparecen patrones no previstos.</li>
+        <li>El panel incluye una gráfica de sentimiento (Positivo/Neutral/Negativo) que resume las oraciones detectadas en los textos procesados — revísela para validar la heurística; ajuste categorías si es necesario.</li>
       </ul>
 
-      <h3>Ejemplo rápido</h3>
-      <ol>
-        <li>Sube entrevistas (PDF/DOCX) y procésalas.</li>
-        <li>Define categorías base (por ejemplo: Acceso a servicios | disponibilidad | cobertura) y guárdelas.</li>
-        <li>Ejecuta el análisis para extraer códigos, agrupar en categorías base y emergentes, y sintetizar temas con citas.</li>
-        <li>En "Ejecutar Análisis" revise las emergentes: elimine o renombre según corresponda.</li>
-        <li>Vaya a "Red Temática", ajuste filtro y zoom, mueva nodos para claridad y exporte la red en PDF si lo requiere.</li>
-        <li>En "Reportes" genere el Word final; la sección de matriz emergente incluye conteos y términos frecuentes para priorización.</li>
-      </ol>
+      <h4>3. Ejecutar Análisis</h4>
+      <ul>
+        <li>La función realiza tres tareas principales: extracción de oraciones y códigos (codificación abierta), asignación a categorías base mediante coincidencia léxica, y detección de categorías emergentes usando agrupamiento (k-means sobre TF–IDF).</li>
+        <li>Resultados mostrados: lectura inicial (resúmenes por documento), lista de códigos iniciales (clic en "×" elimina códigos si desea excluirlos), panel de categorías (base y emergentes) y temas sintetizados con citas.</li>
+        <li>Eliminar o renombrar emergentes: utilice la X para excluir una emergente del análisis; haga clic sobre su nombre para editarlo en línea y propagar el cambio a la red y al reporte.</li>
+      </ul>
+
+      <h4>4. Red temática</h4>
+      <ul>
+        <li>La red representa la jerarquía Ejes → Categorías → Subtemas → Códigos → Citas.</li>
+        <li>Filtros: "Principales" muestra ejes, categorías y subtemas; "Categorías" deja solo ejes y categorías; "Todos" muestra la red completa con códigos y citas.</li>
+        <li>Controles de zoom: Zoom + / Zoom − / Reset permiten ajustar la escala visual; utilícelos para inspeccionar detalles antes de exportar.</li>
+        <li>Arrastre nodos con el ratón o el dedo para mejorar la disposición; la exportación a PDF intentará preservar la escala y la disposición visible.</li>
+        <li>Exportar a PDF: genera un PDF optimizado (imagen rasterizada dentro de la página) con límites de tamaño para mantener el archivo legible y de peso razonable; si necesita más detalle, aumente el Zoom y vuelva a exportar o ajuste la disposición de nodos.</li>
+      </ul>
+
+      <h4>5. Reportes y generación de Word</h4>
+      <ul>
+        <li>El Word generado incluye: título, lectura inicial, códigos, listado de categorías con ejemplos de códigos, temas y subtemas con citas, una tabla de categorías–códigos–citas y una matriz ampliada de ejes emergentes (conteos, términos frecuentes y ejemplos).</li>
+        <li>Si ha eliminado o renombrado emergentes, el documento reflejará esos cambios si genera el reporte tras las modificaciones.</li>
+      </ul>
+
+      <h3>Cómo interpretar resultados y validar calidad</h3>
+      <ul>
+        <li>La extracción y agrupamiento son heurísticos y automatizados: revise siempre las citas y los subtemas para validar la coherencia interpretativa.</li>
+        <li>La heurística de sentimiento es simple (lexical y ventana de negaciones); usela como orientación inicial y compleméntela con lectura cualitativa de las citas.</li>
+        <li>Si detecta que códigos recurrentes se asignan incorrectamente a una categoría, renombre o elimine emergentes y vuelva a ejecutar la actualización de la red y el reporte.</li>
+      </ul>
+
+      <h3>Buenas prácticas</h3>
+      <ul>
+        <li>Procese lotes manejables de documentos para mantener rendimiento y calidad de agrupamiento (evite cargas masivas únicas si es posible).</li>
+        <li>Defina categorías base antes de ejecutar análisis para guiar la agrupación; luego use emergentes para ampliar hallazgos inesperados.</li>
+        <li>Antes de exportar PDF de la red, ajuste zoom y mueva nodos: eso mejora la legibilidad en el documento final.</li>
+        <li>Guarde y documente los cambios (eliminaciones y renombrados de emergentes) para trazabilidad del proceso analítico.</li>
+      </ul>
+
+      <h3>Solución de problemas comunes</h3>
+      <ul>
+        <li>Archivo .doc no se procesa correctamente: convierta a .docx y vuelva a cargar.</li>
+        <li>La gráfica de sentimiento no coincide con su lectura: revise la presencia de ironía, negaciones complejas o léxico contextual (la heurística es limitada).</li>
+        <li>PDF de la red muy grande o ilegible: reduzca contenido con el filtro "Categorías" o "Principales", ajuste Zoom y vuelva a exportar; el exportador limita dimensiones para evitar PDFs demasiado pesados.</li>
+        <li>Renombrado no se refleja: asegúrese de pulsar Enter o perder el foco del campo de edición para aplicar el cambio; la vista y el reporte se actualizan automáticamente.</li>
+      </ul>
+
+      <h3>Seguridad y límites técnicos</h3>
+      <ul>
+        <li>Todo el procesamiento sucede en el navegador; los datos no se envían a servidores externos por defecto.</li>
+        <li>El rendimiento depende de recursos del equipo: archivos muy grandes o muchos documentos pueden requerir más tiempo y memoria.</li>
+      </ul>
+
+      <p class="small">Si necesita asistencia técnica o desea adaptar reglas de extracción y léxico al dominio de su estudio, documente los casos que no encajen y considere ajustar las listas léxicas o realizar una revisión manual de los códigos antes del informe final.</p>
 
       <p class="small">© 2025 Carlos Alfredo Castillo Flores, CEO de ITCPO. Todos los derechos reservados.</p>
     </div>
